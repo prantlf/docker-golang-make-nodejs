@@ -11,7 +11,7 @@ build ::
 	docker build -t golang-make-nodejs .
 
 run ::
-	docker run --rm -t -i golang-make-nodejs busybox sh
+	docker run --rm -t -i golang-make-nodejs
 
 tag ::
 	docker tag golang-make-nodejs prantlf/golang-make-nodejs:latest
