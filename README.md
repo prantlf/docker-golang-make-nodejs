@@ -6,6 +6,8 @@
 
 [This image] is supposed to build and test web browser applications written in [Go]. Back-end often uses `make` as a build tool, which is added by this image. Front-end often contains static assets distributed by [NPM] and bundled using build tools running in [Node.js].  This image is built automatically on the top of the tag [`alpine`] from the [golang repository], so that it always runs the current version of [Go] in the latest [Alpine Linux]. [Make], [Node.js] and [NPM] have to be updated from time to time by triggering a new build manually.
 
+If you have trouble pulling the image from the Docker's default hub.docker.com, try gitlab.com, where [this project] is primarily maintained: `registry.gitlab.com/prantlf/docker-golang-make-nodejs`.
+
 ## Tags
 
 - [`latest`], `1.17`, `1.16`, `1.15`, `1.14`
@@ -60,6 +62,7 @@ Licensed under the MIT license.
 
 [Docker]: https://www.docker.com/
 [This image]: https://hub.docker.com/repository/docker/prantlf/golang-make-nodejs
+[this project]: https://gitlab.com/prantlf/docker-golang-make-nodejs#prantlfgolang-make-nodejs
 [`alpine`]: https://hub.docker.com/_/golang?tab=tags
 [`latest`]: https://hub.docker.com/repository/docker/prantlf/golang-make-nodejs/tags
 [Go]: https://golang.org/
