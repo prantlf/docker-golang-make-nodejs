@@ -4,7 +4,7 @@ services:
 
 variables:
   GITLAB_TAG: $CI_REGISTRY_IMAGE
-  HUB_TAG: prantlf//golang-make-nodejs
+  HUB_TAG: prantlf/golang-make-nodejs
 
 build:
   script:
