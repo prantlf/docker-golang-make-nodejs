@@ -32,26 +32,26 @@ define push_image
 endef
 
 ifeq ($(VERSION),)
-	VERSION=latest
+	VERSION=1.14
 endif
 
 clean ::
-	$(call rm_image,latest)
+	$(call rm_image,1.14)
 
 pull ::
-	$(call pull_image,latest)
+	$(call pull_image,1.14)
 
 lint ::
 	$(call lint_dockerfile,Dockerfile)
 
 build ::
-	$(call build_image,Dockerfile,latest)
+	$(call build_image,Dockerfile,1.14)
 
 test ::
-	$(call test_container,latest)
+	$(call test_container,1.14)
 
 tag ::
-	$(call tag_image,latest)
+	$(call tag_image,1.14)
 
 echo ::
 	@echo "go $(VERSION) works"
@@ -66,4 +66,4 @@ login ::
 	docker login --username=prantlf
 
 push ::
-	$(call push_image,latest)
+	$(call push_image,1.14)
