@@ -3,8 +3,9 @@ services:
   - docker:dind
 
 variables:
-  GITLAB_TAG: $CI_REGISTRY_IMAGE
-  HUB_TAG: prantlf//golang-make-nodejs
+  IMAGE_VER: $CI_COMMIT_REF_NAME
+  GITLAB_TAG: $CI_REGISTRY_IMAGE:$IMAGE_VER
+  HUB_TAG: prantlf//golang-make-nodejs:$IMAGE_VER
 
 build:
   script:
