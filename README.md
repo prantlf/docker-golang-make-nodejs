@@ -8,15 +8,15 @@ If you have trouble pulling the image from the Docker's default hub.docker.com, 
 
 ## Tags
 
-- [`latest`], `1.17`, `1.16`, `1.15`, `1.14`
+- [`latest`], `1.19`, `1.17`, `1.16`, `1.15`, `1.14`
 
-**NOTE**: All tags contain the current Node.js LTS version. Earlier images were tagged by `current` and `lts`, but the `current` saw too little usage. Also, while an older version of the Go compiler can be used in th future without big problems, an older version of Node.js cannot, because the ecosystem of the NPM modules is maintained well only for the current version.
+**NOTE**: All tags contain the current Node.js LTS version. Earlier images were tagged by `current` and `lts`, but the `current` saw too little usage. Also, while an older version of the Go compiler can be used in the future without big problems, an older version of Node.js cannot, because the ecosystem of the NPM modules is maintained well only for the current version.
 
 ## Install
 
     docker pull prantlf/golang-make-nodejs
     # or a specific tag
-    docker pull prantlf/golang-make-nodejs:1.15-lts
+    docker pull prantlf/golang-make-nodejs:1.19
 
 ## Use
 
@@ -45,8 +45,6 @@ The local images are built as `golang-make-nodejs` with the appropriate tags and
     make shell VERSION=latest
     # run make using the created image
     make run VERSION=latest
-    # tag the local images tor upload
-    make tag
     # login to the docker hub
     make login
     # push the local images to the docker hub

@@ -1,9 +1,10 @@
 define rm_image
-	docker image rm golang-make-nodejs:$(1)
+	docker image rm golang-make-nodejs:$(1) prantlf/golang-make-nodejs:$(1) registry.gitlab.com/prantlf/docker-golang-make-nodejs:$(1)
 endef
 
 define pull_image
-	docker pull prantlf/golang-make:$(1)
+	docker pull prantlf/golang-make-nodejs:$(1)
+	docker pull registry.gitlab.com/prantlf/docker-golang-make-nodejs:$(1)
 endef
 
 define lint_dockerfile
@@ -16,6 +17,8 @@ endef
 define build_image
 	docker build -f $(1) -t golang-make-nodejs .
 	docker tag golang-make-nodejs golang-make-nodejs:$(2)
+	docker tag golang-make-nodejs prantlf/golang-make-nodejs
+	docker tag golang-make-nodejs prantlf/golang-make-nodejs:$(2)
 endef
 
 define test_container
@@ -23,12 +26,11 @@ define test_container
 	docker run --rm --entrypoint=node golang-make-nodejs:$(1) -e "console.log('node $(1) works')"
 endef
 
-define tag_image
-	docker tag golang-make-nodejs:$(1) prantlf/golang-make-nodejs:$(1)
-endef
-
 define push_image
+	docker tag prantlf/golang-make-nodejs prantlf/golang-make-nodejs:$(1)
 	docker push prantlf/golang-make-nodejs:$(1)
+	docker tag registry.gitlab.com/prantlf/docker-golang-make-nodejs registry.gitlab.com/prantlf/docker-golang-make-nodejs:$(1)
+	docker push registry.gitlab.com/prantlf/docker-golang-make-nodejs:$(1)
 endef
 
 ifeq ($(VERSION),)
@@ -50,9 +52,6 @@ build ::
 test ::
 	$(call test_container,latest)
 
-tag ::
-	$(call tag_image,latest)
-
 echo ::
 	@echo "go $(VERSION) works"
 
@@ -64,6 +63,7 @@ run ::
 
 login ::
 	docker login --username=prantlf
+	docker login registry.gitlab.com --username=prantlf
 
 push ::
-	$(call push_image,latest)
+	$(call push_image,$(VERSION))
